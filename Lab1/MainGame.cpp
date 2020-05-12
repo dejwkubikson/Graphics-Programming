@@ -41,18 +41,18 @@ void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay(); 
 
-	shaderToon.init("..\\res\\shaderToon.vert", "..\\res\\shaderToon.frag");
 	shaderGeo.init("..\\res\\shaderGeoText.vert", "..\\res\\shaderGeoText.frag", "..\\res\\shaderGeoText.geom");
 	shaderSkybox.init("..\\res\\shaderSkybox.vert", "..\\res\\shaderSkybox.frag");
 	shaderEffect.init("..\\res\\shaderEffect.vert", "..\\res\\shaderEffect.frag");
+	shaderEnvironment.init("..\\res\\shaderEnvironment.vert", "..\\res\\shaderEnvironment.frag");
 	
 	planet.loadModel("..\\res\\planet.obj");
 	asteroid1.loadModel("..\\res\\asteroid1.obj");
-	//asteroid2.loadModel("..\\res\\asteroid2.obj");
+	asteroid2.loadModel("..\\res\\asteroid2.obj");
 
 	planetTex.init("..\\res\\planet_tex.jpg");
 	asteroid1Tex.init("..\\res\\asteroid1_tex.jpg");
-	//asteroid2Tex.init("..\\res\\asteroid2_tex.jpg");
+	asteroid2Tex.init("..\\res\\asteroid2_tex.jpg");
 
 	myCamera.initCamera(glm::vec3(0, 0, -10.0), 70.0f, (float)_gameDisplay.getWidth()/_gameDisplay.getHeight(), 0.01f, 1000.0f);
 
@@ -200,11 +200,12 @@ void MainGame::setGeoShader()
 	shaderGeo.setMat4("transform", transform.GetModel());
 }
 
-void MainGame::setToonLighting()
+void MainGame::setShaderEnvironment()
 {
-	//asteroid2Tex.Bind(0);
-
-	shaderToon.setVec3("lightDir", glm::vec3(0.5, 0.5, 0.5));
+	shaderEnvironment.setMat4("model", transform.GetModel());
+	shaderEnvironment.setMat4("view", myCamera.GetView());
+	shaderEnvironment.setMat4("projection", myCamera.GetProjection());
+	shaderEnvironment.setVec3("cameraPos", myCamera.getPos());
 }
 
 void MainGame::drawGame()
@@ -229,14 +230,14 @@ void MainGame::drawGame()
 	asteroid1Tex.Bind(0);
 	asteroid1.draw();
 	
-	/*shaderToon.Bind();
-	setToonLighting();
+	shaderEnvironment.Bind();
 	transform.SetPos(glm::vec3(3 * cosf(counter * 0.7), 0, 3 * sinf(counter * 0.7)));
 	transform.SetRot(glm::vec3(counter, counter, 0));
 	transform.SetScale(glm::vec3(0.0005, 0.0005, 0.0005));
-	shaderToon.Update(transform, myCamera);
+	setShaderEnvironment();
+	shaderEnvironment.Update(transform, myCamera);
 	asteroid2Tex.Bind(0);
-	asteroid2.draw();*/
+	asteroid2.draw();
 
 	SkyBox();
 

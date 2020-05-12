@@ -28,9 +28,9 @@ private:
 	void gameLoop();
 	void drawGame();
 
-	void setToonLighting();
 	void setGeoShader();
 	void setShaderEffect();
+	void setShaderEnvironment();
 
 	GLuint skyboxVAO, skyboxVBO, cubemapTexture;
 	vector<std::string> faces;
@@ -38,19 +38,19 @@ private:
 	Display _gameDisplay;
 	GameState _gameState;
 
-	Shader shaderToon;
 	Shader shaderSkybox;
 	Shader shaderGeo;
 	Shader shaderEffect;
+	Shader shaderEnvironment;
 
 	Mesh planet;
 	Mesh asteroid1;
-	//Mesh asteroid2;
+	Mesh asteroid2;
 
 	Texture skybox;
 	Texture planetTex;
 	Texture asteroid1Tex;
-	//Texture asteroid2Tex;
+	Texture asteroid2Tex;
 
 	glm::mat4 modelView;
 

@@ -97,6 +97,8 @@
   <ItemGroup>
     <None Include="..\res\shaderEffect.frag" />
     <None Include="..\res\shaderEffect.vert" />
+    <None Include="..\res\shaderEnvironment.frag" />
+    <None Include="..\res\shaderEnvironment.vert" />
     <None Include="..\res\shaderGeoText.frag" />
     <None Include="..\res\shaderGeoText.geom" />
     <None Include="..\res\shaderGeoText.vert" />

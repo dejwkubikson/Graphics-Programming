@@ -97,6 +97,12 @@
     <None Include="..\res\shaderEffect.frag">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\res\shaderEnvironment.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\shaderEnvironment.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Object Include="..\res\planet.obj">
